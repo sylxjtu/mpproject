@@ -1,8 +1,8 @@
 package mpproject;
 
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -14,7 +14,7 @@ import java.net.URI;
 
 public class DomainWordCountController {
   public static void run(Configuration conf) throws IOException, ClassNotFoundException, InterruptedException {
-    Path inputPath = new Path(conf.get(Utils.CORPUS_PATH_KEY));
+    Path inputPath = new Path(conf.get(Utils.RAW_CORPUS_PATH_KEY));
     Path outputPath = new Path(conf.get(Utils.WORD_COUNT_PATH_KEY));
     FileSystem fs = FileSystem.get(conf);
     if(fs.exists(outputPath)) {
@@ -23,7 +23,7 @@ public class DomainWordCountController {
 
     Job job = Job.getInstance(conf, "MPProject Word Count");
 
-    String cacheFile = conf.get(Utils.WORD_LIST_PATH_KEY);
+    String cacheFile = conf.get(Utils.ACAM_PATH_KEY);
     job.addCacheFile(URI.create(cacheFile));
 
     FileInputFormat.addInputPath(job, inputPath);

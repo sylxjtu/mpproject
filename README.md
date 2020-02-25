@@ -89,12 +89,6 @@
 ## 运行说明
 
 ```bash
-hadoop jar mp_project-1.0-SNAPSHOT.jar mpproject.Main \
-    project/corpus \
-    project/word.txt \
-    project/wordcount \
-    project/cooccurcount \
-    project/allwordcount \
-    project/pmi
+hadoop jar mp_project-1.0-SNAPSHOT.jar mpproject.Main config.json
 ```
 

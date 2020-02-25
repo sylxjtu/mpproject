@@ -18,6 +18,16 @@
             <artifactId>hadoop-client</artifactId>
             <version>2.10.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.hankcs</groupId>
+            <artifactId>aho-corasick-double-array-trie</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.61</version>
+        </dependency>
     </dependencies>
 
     <properties>

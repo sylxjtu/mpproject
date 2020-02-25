@@ -1,0 +1,10 @@
+{
+  "X-CORPUS-PATH": "project/corpus",
+  "X-RAW-CORPUS-PATH": "project/raw_corpus",
+  "X-WORD-LIST-PATH": "project/word.txt",
+  "X-WORD-COUNT-PATH": "project/wordcount",
+  "X-WORD-CO-OCCUR-PATH": "project/cooccurcount",
+  "X-WORD-ALL-COUNT-PATH": "project/allwordcount",
+  "X-PMI-PATH": "project/pmi",
+  "X-ACAM-PATH": "project/acam.object"
+}
