@@ -43,6 +43,7 @@ public class CoOccurMapper extends Mapper<LongWritable, Text, Text, LongWritable
         if ((match.end <= otherMatch.begin && otherMatch.begin - match.end <= WINDOW)
                 || (otherMatch.end <= match.begin && match.begin - otherMatch.end <= WINDOW)) {
           output.set(match.value + Utils.SEPARATOR + otherMatch.value);
+          context.write(output, ONE);
         }
       }
     }
