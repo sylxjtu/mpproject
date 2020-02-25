@@ -48,7 +48,7 @@ public class ACAM {
   public void save(String path) throws IOException {
     Path savePath = new Path(path);
     FileSystem fs = FileSystem.get(conf);
-    FSDataOutputStream stream = fs.createFile(savePath).build();
+    FSDataOutputStream stream = fs.create(savePath);
     acdat.save(new ObjectOutputStream(stream.getWrappedStream()));
     stream.flush();
     stream.close();
