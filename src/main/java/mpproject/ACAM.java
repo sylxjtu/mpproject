@@ -55,6 +55,7 @@ public class ACAM {
   }
 
   public void load(String path) throws IOException {
+    acdat = new AhoCorasickDoubleArrayTrie<>();
     FSDataInputStream stream = null;
     try {
       Path savePath = new Path(path);
