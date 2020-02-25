@@ -99,6 +99,5 @@
     <orderEntry type="library" name="Maven: com.sun.jersey:jersey-client:1.9" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-mapreduce-client-jobclient:2.10.0" level="project" />
     <orderEntry type="library" name="Maven: com.hankcs:aho-corasick-double-array-trie:1.2.2" level="project" />
-    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.61" level="project" />
   </component>
 </module>

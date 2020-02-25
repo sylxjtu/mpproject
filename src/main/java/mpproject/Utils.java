@@ -1,9 +1,8 @@
 package mpproject;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
 import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.File;
 import java.util.Map;
@@ -28,12 +27,11 @@ public class Utils {
 
   public static Configuration loadConfig(String path) {
     Configuration conf = new Configuration();
+    ObjectMapper mapper = new ObjectMapper();
+
+
     try {
-      Map<String, String> config =
-              JSON.parseObject(
-                      FileUtils.readFileToString(new File(path)),
-                      new TypeReference<Map<String, String>>() {
-                      });
+      Map<String, String> config = mapper.readValue(FileUtils.readFileToString(new File(path)), Map.class);
       config.forEach(conf::set);
     } catch (Exception e) {
       throw new Error("Cannot open configure file", e);
