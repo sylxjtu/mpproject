@@ -4,9 +4,9 @@ import org.apache.hadoop.conf.Configuration;
 
 public class Main {
   public static void main(String[] args) {
-    assert args.length == 2;
+    assert args.length == 1;
 
-    Configuration conf = Utils.loadConfig(args[1]);
+    Configuration conf = Utils.loadConfig(args[0]);
 
     try {
       DomainWordCountController.run(conf);

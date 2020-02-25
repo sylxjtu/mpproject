@@ -21,9 +21,9 @@ public class ACAM {
   }
 
   public static void main(String[] args) throws IOException {
-    assert args.length == 2;
+    assert args.length == 1;
 
-    Configuration conf = Utils.loadConfig(args[1]);
+    Configuration conf = Utils.loadConfig(args[0]);
 
     Path getFilePath = new Path(conf.get(Utils.WORD_LIST_PATH_KEY));
     FileSystem fs = FileSystem.get(conf);
