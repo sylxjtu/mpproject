@@ -14,18 +14,26 @@ import java.net.URI;
 
 public class CoOccurController {
   public static void run(Configuration conf) throws IOException, ClassNotFoundException, InterruptedException {
+
+    // 从configuration对象中获取原始语料库输入路径
+    // 从configuration对象中获取领域词共现统计结果输出路径
     Path inputPath = new Path(conf.get(Utils.RAW_CORPUS_PATH_KEY));
     Path outputPath = new Path(conf.get(Utils.WORD_CO_OCCUR_PATH_KEY));
     FileSystem fs = FileSystem.get(conf);
-    if(fs.exists(outputPath)) {
+    if (fs.exists(outputPath)) {
       fs.delete(outputPath, true);
     }
 
     Job job = Job.getInstance(conf, "MPProject Co Occur");
 
+    // 从configuration对象中获取AC自动机（用于字符串匹配）存储的路径
     String cacheFile = conf.get(Utils.ACAM_PATH_KEY);
+
+    // 并把该文件传送到DistributedCache中
     job.addCacheFile(URI.create(cacheFile));
 
+    // 设置该MapReduce作业运行的相关参数，
+    // 如输入输出路径、Mapper类、Combiner类、Reducer类等
     FileInputFormat.addInputPath(job, inputPath);
     FileOutputFormat.setOutputPath(job, outputPath);
     job.setJarByClass(CoOccurController.class);

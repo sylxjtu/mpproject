@@ -1,28 +1,31 @@
 package mpproject;
 
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URI;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.StringTokenizer;
 
+/**
+ * @function 语料库中词数的统计Mapper
+ */
 public class AllWordCountMapper extends Mapper<LongWritable, Text, NullWritable, LongWritable> {
+
+  /**
+   * 输入分词的语料库片段
+   * 输出对于每一个词发送一个键值对<NULL, 1>
+   */
   @Override
   protected void map(LongWritable key, Text value, Context context)
-      throws IOException, InterruptedException {
+          throws IOException, InterruptedException {
     String line = value.toString();
     StringTokenizer tokenizer = new StringTokenizer(line);
     LongWritable longWritable = new LongWritable();
     longWritable.set(tokenizer.countTokens());
+
+    // 发送键值对<NULL, 1>
     context.write(NullWritable.get(), longWritable);
   }
 }

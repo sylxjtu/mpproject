@@ -10,19 +10,26 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import java.io.IOException;
-import java.net.URI;
 
+/**
+ * @function 统计语料库中所出现的总词数
+ */
 public class AllWordCountController {
   public static void run(Configuration conf) throws IOException, ClassNotFoundException, InterruptedException {
+
+    // 从configuration对象中获取分词后语料库输入路径
+    // 从configuration对象中获取预料库词数统计结果输出路径
     Path inputPath = new Path(conf.get(Utils.CORPUS_PATH_KEY));
     Path outputPath = new Path(conf.get(Utils.WORD_ALL_COUNT_PATH_KEY));
     FileSystem fs = FileSystem.get(conf);
-    if(fs.exists(outputPath)) {
+    if (fs.exists(outputPath)) {
       fs.delete(outputPath, true);
     }
 
     Job job = Job.getInstance(conf, "MPProject All Word Count");
 
+    // 设置该MapReduce作业运行的相关参数，
+    // 如输入输出路径、Mapper类、Combiner类、Reducer类等
     FileInputFormat.addInputPath(job, inputPath);
     FileOutputFormat.setOutputPath(job, outputPath);
     job.setJarByClass(AllWordCountController.class);
